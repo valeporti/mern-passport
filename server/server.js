@@ -34,6 +34,17 @@ if (isDevMode) {
   app.use(webpackHotMiddleware(compiler));
 }
 
+import helmet from 'helmet';
+
+// Security 
+app.use(helmet({
+  frameguard: {action: 'deny'},
+  hidePoweredBy: { setTo: 'PHP 7.2.2' },
+  xssFilter: true,
+  noSniff: true,
+  ieNoOpen: true,
+}));
+
 // React And Redux Setup
 import { configureStore } from '../client/store';
 import { Provider } from 'react-redux';
