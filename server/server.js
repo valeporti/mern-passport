@@ -1,3 +1,4 @@
+require('dotenv').config();
 import Express from 'express';
 import compression from 'compression';
 import mongoose from 'mongoose';
@@ -169,6 +170,8 @@ app.use((req, res, next) => {
 app.listen(serverConfig.port, (error) => {
   if (!error) {
     console.log(`MERN is running on port: ${serverConfig.port}! Build something amazing!`); // eslint-disable-line
+    console.log(serverConfig);
+    console.log(process.env.MONGO_URL)
   }
 });
 
