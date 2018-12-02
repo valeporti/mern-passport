@@ -24,6 +24,8 @@ export class App extends Component {
   constructor(props) {
     super(props);
     this.state = { isMounted: false };
+    //console.log('props')
+    //console.log(props);
   }
 
   componentDidMount() {
@@ -33,14 +35,14 @@ export class App extends Component {
   toggleAddPostSection = () => {
     this.props.dispatch(toggleAddPost());
   };
-
+  /* !!! Just to understand, delete "{this.props.children}" after further developement !!! */ 
   render() {
     return (
       <div>
         {this.state.isMounted && !window.devToolsExtension && process.env.NODE_ENV === 'development' && <DevTools />}
         <div>
           <Helmet
-            title="MERN Starter - Blog App"
+            title="Wander - Blog App"
             titleTemplate="%s - Blog App"
             meta={[
               { charset: 'utf-8' },
