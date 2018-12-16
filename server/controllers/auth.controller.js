@@ -5,6 +5,9 @@ export function getSomething(req, res) {
 }
 
 export function signUp(req, res) {
-  console.log('in server')
+  
+  const new_user = new Auth(req.query.user);
+
+  
   
 }

@@ -4,7 +4,7 @@ import * as AuthController from '../controllers/auth.controller';
 
 const router = new Router();
 
-router.route('/auth/signUp').post(AuthController.signUp)
+router.route('/auth').post(AuthController.signUp)
 
 export default router;
 

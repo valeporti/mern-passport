@@ -81,6 +81,7 @@ App.propTypes = {
 function mapStateToProps(store) {
   return {
     intl: store.intl,
+    auth: store.auth,
   };
 }
 
