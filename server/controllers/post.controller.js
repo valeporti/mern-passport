@@ -58,6 +58,7 @@ export function getPost(req, res) {
       res.status(500).send(err);
     }
     res.json({ post });
+    //res.status(500).send(err);
   });
 }
 

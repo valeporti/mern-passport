@@ -13,16 +13,6 @@ export default router;
 module.exports = function (app, db) {
     
   
-    app.route('/')
-        .get((req, res) => {
-          res.render(process.cwd() + '/views/pug/index.pug', {
-            title: 'Hello', 
-            message: 'Please login',
-            showRegistration: true,
-            showLogin: true
-          });
-        });
-  
   app.route('/profile')
   .get(ensureAuthenticated, (req,res) => {
        res.render(process.cwd() + '/views/pug/profile', {

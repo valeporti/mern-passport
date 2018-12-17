@@ -16,7 +16,15 @@ export default function callApi(endpoint, method = 'get', body) {
   })
   .then(response => response.json().then(json => ({ json, response })))
   .then(({ json, response }) => {
+    console.log('here?')
+    console.log(json)
+    console.log(response)
+    console.log(response.ok)
     if (!response.ok) {
+      console.log('response not ok')
+      json.err = true;
+      json.name = json.name || json.code || 'error_new';
+      json.mssg = res.message || res.errmsg || 'no_msg_found';
       return Promise.reject(json);
     }
 
@@ -25,5 +33,16 @@ export default function callApi(endpoint, method = 'get', body) {
   .then(
     response => response,
     error => error
-  );
+  ); 
+  /* .then(response => {
+    if (!response.ok) {
+      console.log('not ok')
+      return Promise.reject(response);
+    }
+    console.log('res1')
+    console.log(response)
+    return response;
+  })
+  .then(response => console.log('evefything ok'))
+  .catch(err => { console.log('not ok'); console.log(err)}) */
 }

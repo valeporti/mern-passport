@@ -16,8 +16,18 @@ export function signUpRequest(user) {
     return callApi('auth', 'post', {
       user: {
         name: user.name,
-        email: user.email
+        email: user.email,
+        password: user.password,
       }
-    }).then(res => dispatch(signUp(res.user)))
+    }).then(res => {
+      if (res.err) {
+        console.log('error en dispatch')
+        console.log('Name: ' + res.name + ' - ' + res.mssg)
+      } else {
+        console.log('not error dispatch')
+        console.log(res)
+        dispatch(signUp(res.user))
+      }
+    })
   }
 }
