@@ -4,10 +4,12 @@ import compression from 'compression';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import path from 'path';
+import passport from 'passport';
+import session from 'express-session';
 import IntlWrapper from '../client/modules/Intl/IntlWrapper';
 
 // Initialize the Express App
-const app = new Express();
+const app = new Express(); // = module.exports = 
 
 // Set Development modes checks
 const isDevMode = process.env.NODE_ENV === 'development' || false;
@@ -59,9 +61,8 @@ import routes from '../client/routes';
 import { fetchComponentData } from './util/fetchData';
 import dummyData from './dummyData';
 import serverConfig from './config';
-console.log(routes)
 
-// Controllers
+// Routes -> Controllers
 import posts from './routes/post.routes';
 import auth from './routes/auth.routes';
 
@@ -75,7 +76,6 @@ if (process.env.NODE_ENV !== 'test') {
       console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console
       throw error;
     }
-
     // feed some dummy data in DB.
     dummyData();
   });
@@ -86,6 +86,18 @@ app.use(compression());
 app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(Express.static(path.resolve(__dirname, '../dist/client')));
+
+// Set Up Passport and session
+//import passport from './passport';
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true,
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+require('./passport');
+
 app.use('/api', [posts, auth]);
 
 
@@ -136,6 +148,10 @@ const renderError = err => {
 
 // Server Side Rendering based on routes matched by React-router.
 app.use((req, res, next) => {
+
+  console.log('on server side rendering')
+  console.log('req, session ', req.session)
+
   match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
     if (err) {
       return res.status(500).end(renderError(err));

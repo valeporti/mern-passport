@@ -1,10 +1,32 @@
 import { Router } from 'express';
 import * as auth from '../middleware/auth'
 import * as AuthController from '../controllers/auth.controller';
+import passport from 'passport';
+//require('../passport')(passport);
 
 const router = new Router();
 
-router.route('/auth').post(AuthController.signUp)
+router.route('/auth/register').post(AuthController.signUp); 
+
+//router.route('/auth').post(AuthController.logIn);
+
+router.post('/auth', 
+    passport.authenticate('local', (err, user, info) => {
+        console.log('inpassport')
+        console.log(info)
+        console.log(user)
+        console.log(err)
+        /* if (err) { return next(err); }
+        if (!user) { return res.redirect('/'); }
+
+        // req / res held in closure
+        req.logIn(user, function(err) {
+        if (err) { return next(err); }
+        return res.send(user);
+    }); */
+    }),
+    (req, res) => { console.log('hellooooo')}
+  )
 
 export default router;
 

@@ -8,10 +8,12 @@ export const API_URL = (typeof window === 'undefined' || process.env.NODE_ENV ==
 export default function callApi(endpoint, method = 'get', body) {
   console.log('api caller url')
   console.log(API_URL);
+  console.log(endpoint);
   console.log(method);
   return fetch(`${API_URL}/${endpoint}`, {
     headers: { 'content-type': 'application/json' },
     method,
+    credentials: 'include',
     body: JSON.stringify(body),
   })
   .then(response => response.json().then(json => ({ json, response })))
@@ -24,11 +26,11 @@ export default function callApi(endpoint, method = 'get', body) {
       console.log('response not ok')
       json.err = true;
       json.name = json.name || json.code || 'error_new';
-      json.mssg = res.message || res.errmsg || 'no_msg_found';
+      json.mssg = json.message || json.errmsg || 'no_msg_found';
       return Promise.reject(json);
+    } else {
+      return json;
     }
-
-    return json;
   })
   .then(
     response => response,
