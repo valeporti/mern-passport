@@ -6,12 +6,16 @@ const HASH_ROUNDS = 12
 
 export function logIn(req, res, next) {
   console.log('on log in controller')
+
+  console.log('req')
+  console.log(req.body)
+  next()
   //console.log(req.credentials)
-  passport.authenticate('local', (err, user, info) => {
+  /* passport.authenticate('local', (err, user, info) => {
     console.log('inpassport')
     console.log(info)
     console.log(user)
-    console.log(err)
+    console.log(err) */
     /* if (err) { return next(err); }
     if (!user) { return res.redirect('/'); }
 
@@ -20,7 +24,10 @@ export function logIn(req, res, next) {
       if (err) { return next(err); }
       return res.send(user);
     }); */
-  })(req, res, next);
+  //})(req, res, next);
+}
+export function logInPassResponse(req, res) {
+  res.send({username: req.user.username})
 }
 
 export function signUp(req, res, next) {

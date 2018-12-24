@@ -4,9 +4,9 @@ import compression from 'compression';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import path from 'path';
-import passport from 'passport';
 import session from 'express-session';
 import IntlWrapper from '../client/modules/Intl/IntlWrapper';
+import morgan from 'morgan';
 
 // Initialize the Express App
 const app = new Express(); // = module.exports = 
@@ -37,8 +37,10 @@ if (isDevMode) {
   app.use(webpackHotMiddleware(compiler));
 }
 
-import helmet from 'helmet';
+// Middleware 
+app.use(morgan('dev'))
 
+import helmet from 'helmet';
 // Security 
 app.use(helmet({
   frameguard: {action: 'deny'},
@@ -61,10 +63,7 @@ import routes from '../client/routes';
 import { fetchComponentData } from './util/fetchData';
 import dummyData from './dummyData';
 import serverConfig from './config';
-
-// Routes -> Controllers
-import posts from './routes/post.routes';
-import auth from './routes/auth.routes';
+import passport from './passport';
 
 // Set native promises as mongoose promise
 mongoose.Promise = global.Promise;
@@ -88,17 +87,20 @@ app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(Express.static(path.resolve(__dirname, '../dist/client')));
 
 // Set Up Passport and session
-//import passport from './passport';
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: true,
   saveUninitialized: true,
 }));
 app.use(passport.initialize());
-app.use(passport.session());
-require('./passport');
+app.use(passport.session()); // calls the deserializeUser
 
-app.use('/api', [posts, auth]);
+// Routes -> Controllers
+import posts from './routes/post.routes';
+import auth from './routes/auth.routes';
+
+//app.use('/api', [posts, auth]);
+app.use('/api', [posts, auth]); // try axios
 
 
 // Render Initial HTML

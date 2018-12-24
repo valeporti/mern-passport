@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
-const authSchema = new Schema({
+const User = new Schema({
   name: {type: 'String', required: true },
   email: {type: 'String', required: true, unique: true },
   username: {type: 'String', required: true, unique: true },
@@ -10,4 +10,6 @@ const authSchema = new Schema({
   updated_at: {type: 'Date', default: Date.now },
 });
 
-export default mongoose.model('User', authSchema);
+//User.plugin(passportLocalMongoose);
+
+module.exports = mongoose.model('User', User);

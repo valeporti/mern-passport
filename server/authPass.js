@@ -2,7 +2,7 @@ require('dotenv').config();
 import bcrypt from 'bcrypt';
 import passport from 'passport';
 //import LocalStrategy from 'passport-local';
-let LocalStrategy = require('passport-local').Strategy;
+let LocalStrategy = require('passport-local');
 const ObjectID = require('mongodb').ObjectID;
 import User from './models/auth';
 
