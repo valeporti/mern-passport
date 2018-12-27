@@ -102,7 +102,6 @@ import auth from './routes/auth.routes';
 //app.use('/api', [posts, auth]);
 app.use('/api', [posts, auth]); // try axios
 
-
 // Render Initial HTML
 const renderFullPage = (html, initialState) => {
   const head = Helmet.rewind();
@@ -152,7 +151,7 @@ const renderError = err => {
 app.use((req, res, next) => {
 
   console.log('on server side rendering')
-  console.log('req, session ', req.session)
+  console.log('req, session: ', req.session)
 
   match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
     if (err) {

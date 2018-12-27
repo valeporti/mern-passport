@@ -23,15 +23,22 @@ passport.deserializeUser((id, done) => {
 			console.log(user)
 			console.log('--------------')
 			done(null, user)
-    } */
-    {_id: new ObjectID(id)},
+		} */
+		{_id: new ObjectID(id)},
+		(err, user) => {
+			console.log('*** Deserialize user, user:')
+			console.log(user)
+			console.log('--------------')
+			done(null, user);
+		}
+    /* {_id: new ObjectID(id)},
     'username', 
     (err, user) => {
       console.log('*** Deserialize user, user:')
 			console.log(user)
 			console.log('--------------')
-      done(null, doc);
-    }
+      done(null, user);
+    } */
 	)
 })
 

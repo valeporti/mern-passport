@@ -2,24 +2,21 @@ import { Router } from 'express';
 import * as auth from '../middleware/auth'
 import * as AuthController from '../controllers/auth.controller';
 import passport from 'passport';
+import { ensureAuthenticated } from '../middleware/auth';
 //require('../passport')(passport);
 //const passport = require('../passport');
 
 const router = new Router();
 
+router.route('/user').get(ensureAuthenticated, AuthController.sessionUser);
+
 router.route('/register').post(AuthController.signUp); 
 
-//router.route('/login').post(AuthController.logInPassport, AuthController.logInPassResponse);
-
 router.post('/login',
-    (req, res, next) => {
-        console.log('routes/user.js, login, req.body: ');
-        console.log(req.body)
-        next()
-    },
-    passport.authenticate('local'),//, { failureRedirect: '/' }),
+    AuthController.logIn,
+    passport.authenticate('local'), //, { failureRedirect: '/' }),
     AuthController.logInPassResponse
-  ) 
+  );
 
 export default router;
 

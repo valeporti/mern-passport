@@ -9,10 +9,12 @@ import styles from './App.css';
 import Helmet from 'react-helmet';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import Menu from './components/Menu/Menu';
 
 // Import Actions
-import { toggleAddPost } from './AppActions';
+import { toggleAddPost, toggleActiveMenu } from './AppActions';
 import { switchLanguage } from '../../modules/Intl/IntlActions';
+import { sessionUserRequest } from '../Auth/AuthActions';
 
 let DevTools;
 if (process.env.NODE_ENV === 'development') {
@@ -24,17 +26,29 @@ export class App extends Component {
   constructor(props) {
     super(props);
     this.state = { isMounted: false };
-    //console.log('props')
-    //console.log(props);
+    console.log('props')
+    console.log(props);
   }
 
   componentDidMount() {
     this.setState({isMounted: true}); // eslint-disable-line
+    this.searchForUser();
+  }
+
+  searchForUser = () => {
+    this.props.dispatch(sessionUserRequest());
   }
 
   toggleAddPostSection = () => {
     this.props.dispatch(toggleAddPost());
   };
+
+  toggleActiveMenu = () => {
+    this.props.dispatch(toggleActiveMenu());
+  };
+
+  
+
   /* !!! Just to understand, delete "{this.props.children}" after further developement !!! */ 
   render() {
     return (
@@ -61,8 +75,16 @@ export class App extends Component {
             intl={this.props.intl}
             toggleAddPost={this.toggleAddPostSection}
           />
+          <Menu 
+            toggleActiveMenu={this.toggleActiveMenu}
+            activeMenu={this.props.app.activeMenu}
+          />
+
           <div className={styles.container}>
-            {this.props.children}
+            {/* this.props.children */}
+            {
+              (this.props.auth.log_in) ? <Auth /> : (Hello)
+            }
           </div>
           <Footer />
         </div>
@@ -80,6 +102,7 @@ App.propTypes = {
 // Retrieve data from store as props
 function mapStateToProps(store) {
   return {
+    app: store.app,
     intl: store.intl,
     auth: store.auth,
   };

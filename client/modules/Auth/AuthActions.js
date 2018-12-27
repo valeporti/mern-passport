@@ -10,6 +10,16 @@ export function signUp(user) { return { type: SIGN_UP, user } }
 export function logIn(username, bool) { return { type: LOG_IN, username, bool } }
 export function authSection(auth_section) { return { type: LOGGED_IN, auth_section } }
 
+export function sessionUserRequest() {
+  return (dispatch) => {
+    console.log('on session Request')
+    return callApi('user', 'get', {}).then(res => {
+      console.log('in action session request')
+      console.log(res)
+    })
+  }
+}
+
 export function logInRequest(user) {
   return (dispatch) => {
     console.log('on login action')

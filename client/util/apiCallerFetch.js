@@ -10,6 +10,8 @@ export default function callApi(endpoint, method = 'get', body) {
   console.log(API_URL);
   console.log(endpoint);
   console.log(method);
+  console.log('end fetch')
+  console.log('-------');
   return fetch(`${API_URL}/${endpoint}`, {
     headers: { 'content-type': 'application/json' },
     method,

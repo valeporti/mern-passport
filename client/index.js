@@ -1,6 +1,7 @@
 /**
  * Client entry point
  */
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
