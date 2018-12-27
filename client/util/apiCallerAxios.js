@@ -5,7 +5,7 @@ export const API_URL = (typeof window === 'undefined' || process.env.NODE_ENV ==
   process.env.BASE_URL || (`http://localhost:${process.env.PORT || Config.port}/api`) :
   '/api';
 
-export default function callApiX(endpoint, method = 'get', data) {
+export default function callApiX(endpoint, method = 'get', data = {}) {
   console.log('api callerX url')
   console.log(API_URL);
   console.log(endpoint);

@@ -19,7 +19,7 @@ function Menu(props, context) {
       </span>
       <div className={styles.menuContent}>
         <ul>
-          <li><a href="/#LogIn">Log In</a></li>
+         <li><a onClick={props.handleLogOutRequest}>Log Out</a></li>
         </ul>
       </div>
     </div>

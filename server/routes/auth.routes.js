@@ -8,6 +8,8 @@ import { ensureAuthenticated } from '../middleware/auth';
 
 const router = new Router();
 
+router.route('/logout').get(AuthController.logOut);
+
 router.route('/user').get(ensureAuthenticated, AuthController.sessionUser);
 
 router.route('/register').post(AuthController.signUp); 

@@ -9,10 +9,11 @@ import styles from './App.css';
 import Helmet from 'react-helmet';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import Menu from './components/Menu/Menu';
+import Auth from '../Auth/Auth';
+import Home from '../Home/Home';
 
 // Import Actions
-import { toggleAddPost, toggleActiveMenu } from './AppActions';
+import { toggleAddPost } from './AppActions';
 import { switchLanguage } from '../../modules/Intl/IntlActions';
 import { sessionUserRequest } from '../Auth/AuthActions';
 
@@ -43,12 +44,6 @@ export class App extends Component {
     this.props.dispatch(toggleAddPost());
   };
 
-  toggleActiveMenu = () => {
-    this.props.dispatch(toggleActiveMenu());
-  };
-
-  
-
   /* !!! Just to understand, delete "{this.props.children}" after further developement !!! */ 
   render() {
     return (
@@ -75,15 +70,10 @@ export class App extends Component {
             intl={this.props.intl}
             toggleAddPost={this.toggleAddPostSection}
           />
-          <Menu 
-            toggleActiveMenu={this.toggleActiveMenu}
-            activeMenu={this.props.app.activeMenu}
-          />
-
           <div className={styles.container}>
             {/* this.props.children */}
             {
-              (this.props.auth.log_in) ? <Auth /> : (Hello)
+              (this.props.auth.log_in) ? <Home /> : <Auth />
             }
           </div>
           <Footer />

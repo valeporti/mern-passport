@@ -1,7 +1,7 @@
 // Import Actions
-import { SIGN_UP, AUTH_SECTION, LOG_IN } from './AuthActions';
+import { SIGN_UP, AUTH_SECTION, LOG_IN, LOG_OUT } from './AuthActions';
 
-const REGISTER_SECTION = 0;
+const REGISTER_SECTION = 1;
 
 // Initial State
 const initialState = { 
@@ -16,9 +16,11 @@ const AuthReducer = (state = initialState, action) => {
     case SIGN_UP : 
       return Object.assign({}, state, { username: action.username });
     case LOG_IN : 
-      return Object.assign({}, state, { log_in: action.bool, user: action.user });
+      return Object.assign({}, state, { log_in: action.bool, username: action.username });
     case AUTH_SECTION : 
       return Object.assign({}, state, { auth_section: action.auth_section });
+    case LOG_OUT :
+      return Object.assign({}, state, { log_in: action.bool, username: action.username });
     default:
       return state;
   }

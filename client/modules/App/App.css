@@ -1,9 +1,72 @@
 @import url(https://use.fontawesome.com/releases/v5.3.1/css/all.css);
 
 .container {
-  background-color: tomato;
+  background-color: white;
   max-width: 980px;
   width: 100%;
   /* padding: 15px; */
   margin: 0 auto;
+}
+
+.feedbackInput {
+  color: #FF6447;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  /* font-size: 18px; */
+  border-radius: 0;
+  line-height: 22px;
+  background-color: #fbfbfb;
+  padding: 13px 13px 13px 54px;
+  margin-bottom: 10px;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 2px solid rgba(0, 0, 0, 0);
+}
+
+.feedbackInput:focus {
+  background: #fff;
+  box-shadow: 0;
+  border: 2px solid #FF6447;
+  color: #FF6447;
+  outline: none;
+  /* padding: 13px 13px 13px 54px; */
+}
+
+.inputIcon {
+  position: absolute;
+  font-size: 25px;
+  margin: auto;
+  width: 40px;
+  height: 35px;
+  color: #253C4F;
+  /* Center the icon */
+  margin: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.button_form {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  width: 100%;
+  border: tomato solid 4px;
+  cursor: pointer;
+  background-color: tomato;
+  color: white;
+  font-size: 15px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  margin-top: -4px;
+  font-weight: 700;
+}
+.button_form:hover {
+  background-color: #FFA595;
+  color: white;
 }

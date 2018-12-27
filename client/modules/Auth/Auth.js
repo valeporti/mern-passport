@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import classNames from 'classnames';
-import { Button } from 'react-bootstrap';
+import { Tabs, Tab } from 'react-bootstrap';
 
 // Components
 import SignUp from './components/SignUp/SignUp';
@@ -53,12 +53,15 @@ class Auth extends Component {
     //let auth_section = <SignUp handleSignUp={this.handleSignUp} />;
     let btnClass = classNames('btn', 'btn-primary')
     return (
-
-      
       <div className={styles.container}>
-        <div className={btnClass} >butt</div>
-        <Button bsStyle="primary">Primary</Button>
-        { auth_section }
+        <Tabs defaultActiveKey={0} id="auth_choice">
+          <Tab eventKey={1} title="LogIn">
+            <LogIn handleLogIn={this.handleLogIn} />
+          </Tab>
+          <Tab eventKey={2} title="SignUp">
+            <SignUp handleSignUp={this.handleSignUp} />
+          </Tab>
+        </Tabs>
       </div>
     );
   }

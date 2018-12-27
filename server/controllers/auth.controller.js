@@ -4,6 +4,11 @@ import passport from 'passport';
 
 const HASH_ROUNDS = 12
 
+export function logOut(req, res) {
+  req.logout();
+  res.status(200).send();
+}
+
 export function sessionUser(req, res, next) {
   console.log('===== user!!======')
   //console.log(req.session)
@@ -28,18 +33,20 @@ export function logInPassResponse(req, res) {
 
 export function signUp(req, res, next) {
   console.log('on sign Up controller') 
+  console.log(req.body.user)
   bcrypt.hash(req.body.user.password, HASH_ROUNDS, (err, hash) =>  {
     if (err) { res.status(500).send(err); }
     else {
+      console.log(req.body.user)
       req.body.user.password = hash;
-      req.body.user.username = req.body.user.email
+      req.body.user.username = req.body.user.email;
       User.create(req.body.user, (err, new_user) => {
         if (err) { res.status(500).send(err) }
         else { 
           // don't send password
           console.log('user saved')
           res.json({user: {
-            name: new_user.name,
+            first_name: new_user.first_name,
             email: new_user.email,
           }}); 
         }

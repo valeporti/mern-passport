@@ -16,29 +16,13 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((id, done) => {
 	console.log('DeserializeUser called')
 	User.findOne(
-		/* { _id: id },
-		'username',
-		(err, user) => {
-			console.log('*** Deserialize user, user:')
-			console.log(user)
-			console.log('--------------')
-			done(null, user)
-		} */
-		{_id: new ObjectID(id)},
+		{_id: id}, //new ObjectID(id)},
 		(err, user) => {
 			console.log('*** Deserialize user, user:')
 			console.log(user)
 			console.log('--------------')
 			done(null, user);
 		}
-    /* {_id: new ObjectID(id)},
-    'username', 
-    (err, user) => {
-      console.log('*** Deserialize user, user:')
-			console.log(user)
-			console.log('--------------')
-      done(null, user);
-    } */
 	)
 })
 

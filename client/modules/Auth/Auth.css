@@ -1,7 +1,14 @@
 /* Auth styles */
 .container {
-  max-width: 980px;
-  width: 100%;
-  padding: 15px;
-  margin: 0 auto;
+  background-color: rgba(72, 72, 72, 0.4);
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-top: 35px;
+  padding-bottom: 50px;
+  max-width: 450px;
+  left: 50%;
+  margin: auto;
+  border-radius: 7px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
 }
