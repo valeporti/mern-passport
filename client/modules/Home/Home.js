@@ -37,6 +37,7 @@ class Home extends Component {
           activeMenu={this.props.home.activeMenu}
           handleLogOutRequest={this.handleLogOutRequest}
         />
+        Hello, {this.props.auth.username}
       </div>
     );
   }

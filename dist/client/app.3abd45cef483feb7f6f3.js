@@ -35397,7 +35397,7 @@ var Home = function (_Component) {
         toggleActiveMenu: this.toggleActiveMenu,
         activeMenu: this.props.home.activeMenu,
         handleLogOutRequest: this.handleLogOutRequest
-      }));
+      }), 'Hello, ', this.props.auth.username);
     }
   }]);
 
