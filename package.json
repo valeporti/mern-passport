@@ -11,7 +11,7 @@
     "dev": "cross-env NODE_ENV=development nodemon index.js",
     "dev-cach": "cross-env BABEL_DISABLE_CACHE=1 NODE_ENV=development nodemon index.js",
     "start:prod": "cross-env NODE_ENV=production node index.js",
-    "heroku": "npm run clean && npm run build && npm run build:server",
+    "heroku": "npm run-script clean && npm run-script build && npm run-script build:server",
     "bs": "npm run clean && npm run build && npm run build:server && npm run start:prod",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
     "build:server": "cross-env NODE_ENV=production webpack --config webpack.config.server.js",

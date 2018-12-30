@@ -20,6 +20,10 @@ module.exports = {
     ]
   },
 
+  node: {
+    fs: 'empty'
+  },
+
   output: {
     path: __dirname + '/dist/client/',
     filename: '[name].[chunkhash].js',
