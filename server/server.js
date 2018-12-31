@@ -1,4 +1,3 @@
-require('dotenv').config();
 import Express from 'express';
 import compression from 'compression';
 import mongoose from 'mongoose';
@@ -7,6 +6,7 @@ import path from 'path';
 import session from 'express-session';
 import IntlWrapper from '../client/modules/Intl/IntlWrapper';
 import morgan from 'morgan';
+import { injectEnv } from './util/injectEnv';
 
 // Initialize the Express App
 const app = new Express(); // = module.exports = 
@@ -17,6 +17,7 @@ const isProdMode = process.env.NODE_ENV === 'production' || false;
 
 // Run Webpack dev server in development mode
 if (isDevMode) {
+  injectEnv();
   // Webpack Requirements
   // eslint-disable-next-line global-require
   const webpack = require('webpack');
@@ -194,6 +195,7 @@ app.use((req, res, next) => {
 app.listen(serverConfig.port, (error) => {
   if (!error) {
     console.log(`MERN is running on port: ${serverConfig.port}! Build something amazing!`); // eslint-disable-line
+    console.log(process.env)
   }
 });
 

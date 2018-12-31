@@ -125,7 +125,7 @@ exports.sessionUserRequest = sessionUserRequest;
 exports.logInRequest = logInRequest;
 exports.signUpRequest = signUpRequest;
 
-var _apiCallerAxios = __webpack_require__(54);
+var _apiCallerAxios = __webpack_require__(55);
 
 var _apiCallerAxios2 = _interopRequireDefault(_apiCallerAxios);
 
@@ -345,7 +345,7 @@ exports.fetchPost = fetchPost;
 exports.deletePost = deletePost;
 exports.deletePostRequest = deletePostRequest;
 
-var _apiCallerFetch = __webpack_require__(42);
+var _apiCallerFetch = __webpack_require__(43);
 
 var _apiCallerFetch2 = _interopRequireDefault(_apiCallerFetch);
 
@@ -426,15 +426,16 @@ function deletePostRequest(cuid) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-__webpack_require__(18).config();
+
+var _injectEnv = __webpack_require__(17);
+
+if (process.env.NODE_ENV === 'development') {
+  (0, _injectEnv.injectEnv)();
+}
 
 var config = {
   mongoURL: process.env.MONGO_URL || 'mongodb://127.0.0.1:27017',
-  port: process.env.PORT || 8000,
-  'entity': 'auths',
-  'service': 'auths',
-  'usernameField': 'username',
-  'passwordField': 'password'
+  port: process.env.PORT || 8000
 };
 
 exports.default = config;
@@ -490,6 +491,24 @@ module.exports = _mongoose2.default.model('User', User);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.injectEnv = injectEnv;
+function injectEnv() {
+  var json = __webpack_require__(38);
+  Object.keys(json).forEach(function (key) {
+    process.env[key] = json[key];
+  });
+}
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.getShowAddPost = undefined;
 
 var _AppActions = __webpack_require__(10);
@@ -525,12 +544,6 @@ var getShowAddPost = exports.getShowAddPost = function getShowAddPost(state) {
 exports.default = AppReducer;
 
 /***/ }),
-/* 18 */
-/***/ (function(module, exports) {
-
-module.exports = require("dotenv");
-
-/***/ }),
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -544,31 +557,31 @@ exports.localizationData = exports.enabledLanguages = undefined;
 
 var _reactIntl = __webpack_require__(2);
 
-var _intl = __webpack_require__(45);
+var _intl = __webpack_require__(46);
 
 var _intl2 = _interopRequireDefault(_intl);
 
-var _intlLocalesSupported = __webpack_require__(46);
+var _intlLocalesSupported = __webpack_require__(47);
 
 var _intlLocalesSupported2 = _interopRequireDefault(_intlLocalesSupported);
 
-__webpack_require__(47);
+__webpack_require__(48);
 
-var _en = __webpack_require__(48);
+var _en = __webpack_require__(49);
 
 var _en2 = _interopRequireDefault(_en);
 
-var _en3 = __webpack_require__(49);
+var _en3 = __webpack_require__(50);
 
 var _en4 = _interopRequireDefault(_en3);
 
-__webpack_require__(50);
+__webpack_require__(51);
 
-var _fr = __webpack_require__(51);
+var _fr = __webpack_require__(52);
 
 var _fr2 = _interopRequireDefault(_fr);
 
-var _fr3 = __webpack_require__(52);
+var _fr3 = __webpack_require__(53);
 
 var _fr4 = _interopRequireDefault(_fr3);
 
@@ -698,13 +711,13 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reduxDevtools = __webpack_require__(57);
+var _reduxDevtools = __webpack_require__(58);
 
-var _reduxDevtoolsLogMonitor = __webpack_require__(58);
+var _reduxDevtoolsLogMonitor = __webpack_require__(59);
 
 var _reduxDevtoolsLogMonitor2 = _interopRequireDefault(_reduxDevtoolsLogMonitor);
 
-var _reduxDevtoolsDockMonitor = __webpack_require__(59);
+var _reduxDevtoolsDockMonitor = __webpack_require__(60);
 
 var _reduxDevtoolsDockMonitor2 = _interopRequireDefault(_reduxDevtoolsDockMonitor);
 
@@ -899,17 +912,17 @@ var _reactRedux = __webpack_require__(3);
 
 var _redux = __webpack_require__(6);
 
-var _classnames = __webpack_require__(63);
+var _classnames = __webpack_require__(64);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
 var _reactBootstrap = __webpack_require__(9);
 
-var _SignUp = __webpack_require__(64);
+var _SignUp = __webpack_require__(65);
 
 var _SignUp2 = _interopRequireDefault(_SignUp);
 
-var _LogIn = __webpack_require__(65);
+var _LogIn = __webpack_require__(66);
 
 var _LogIn2 = _interopRequireDefault(_LogIn);
 
@@ -1058,11 +1071,11 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactRedux = __webpack_require__(3);
 
-var _PostList = __webpack_require__(69);
+var _PostList = __webpack_require__(70);
 
 var _PostList2 = _interopRequireDefault(_PostList);
 
-var _PostCreateWidget = __webpack_require__(71);
+var _PostCreateWidget = __webpack_require__(72);
 
 var _PostCreateWidget2 = _interopRequireDefault(_PostCreateWidget);
 
@@ -1070,7 +1083,7 @@ var _PostActions = __webpack_require__(12);
 
 var _AppActions = __webpack_require__(10);
 
-var _AppReducer = __webpack_require__(17);
+var _AppReducer = __webpack_require__(18);
 
 var _PostReducer = __webpack_require__(11);
 
@@ -1335,11 +1348,13 @@ var _morgan = __webpack_require__(37);
 
 var _morgan2 = _interopRequireDefault(_morgan);
 
-var _helmet = __webpack_require__(38);
+var _injectEnv = __webpack_require__(17);
+
+var _helmet = __webpack_require__(39);
 
 var _helmet2 = _interopRequireDefault(_helmet);
 
-var _store = __webpack_require__(39);
+var _store = __webpack_require__(40);
 
 var _reactRedux = __webpack_require__(3);
 
@@ -1347,7 +1362,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _server = __webpack_require__(60);
+var _server = __webpack_require__(61);
 
 var _reactRouter = __webpack_require__(8);
 
@@ -1355,13 +1370,13 @@ var _reactHelmet = __webpack_require__(14);
 
 var _reactHelmet2 = _interopRequireDefault(_reactHelmet);
 
-var _routes = __webpack_require__(61);
+var _routes = __webpack_require__(62);
 
 var _routes2 = _interopRequireDefault(_routes);
 
-var _fetchData = __webpack_require__(72);
+var _fetchData = __webpack_require__(73);
 
-var _dummyData = __webpack_require__(74);
+var _dummyData = __webpack_require__(75);
 
 var _dummyData2 = _interopRequireDefault(_dummyData);
 
@@ -1369,26 +1384,23 @@ var _config = __webpack_require__(13);
 
 var _config2 = _interopRequireDefault(_config);
 
-var _passport = __webpack_require__(75);
+var _passport = __webpack_require__(76);
 
 var _passport2 = _interopRequireDefault(_passport);
 
-var _post = __webpack_require__(79);
+var _post = __webpack_require__(80);
 
 var _post2 = _interopRequireDefault(_post);
 
-var _auth = __webpack_require__(84);
+var _auth = __webpack_require__(85);
 
 var _auth2 = _interopRequireDefault(_auth);
 
-var _home = __webpack_require__(87);
+var _home = __webpack_require__(88);
 
 var _home2 = _interopRequireDefault(_home);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-__webpack_require__(18).config();
-
 
 // Initialize the Express App
 var app = new _express2.default(); // = module.exports = 
@@ -1399,15 +1411,16 @@ var isProdMode = process.env.NODE_ENV === 'production' || false;
 
 // Run Webpack dev server in development mode
 if (isDevMode) {
+  (0, _injectEnv.injectEnv)();
   // Webpack Requirements
   // eslint-disable-next-line global-require
   var webpack = __webpack_require__(30);
   // eslint-disable-next-line global-require
-  var config = __webpack_require__(90);
+  var config = __webpack_require__(91);
   // eslint-disable-next-line global-require
-  var webpackDevMiddleware = __webpack_require__(94);
+  var webpackDevMiddleware = __webpack_require__(95);
   // eslint-disable-next-line global-require
-  var webpackHotMiddleware = __webpack_require__(95);
+  var webpackHotMiddleware = __webpack_require__(96);
   var compiler = webpack(config);
   app.use(webpackDevMiddleware(compiler, {
     noInfo: true,
@@ -1528,6 +1541,7 @@ app.use(function (req, res, next) {
 app.listen(_config2.default.port, function (error) {
   if (!error) {
     console.log('MERN is running on port: ' + _config2.default.port + '! Build something amazing!'); // eslint-disable-line
+    console.log(process.env);
   }
 });
 
@@ -1611,10 +1625,16 @@ module.exports = require("morgan");
 /* 38 */
 /***/ (function(module, exports) {
 
-module.exports = require("helmet");
+module.exports = {"MONGO_URL":"mongodb://localhost:27017/wander-dev","PORT":8000,"SESSION_SECRET":"falafel"}
 
 /***/ }),
 /* 39 */
+/***/ (function(module, exports) {
+
+module.exports = require("helmet");
+
+/***/ }),
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1627,11 +1647,11 @@ exports.configureStore = configureStore;
 
 var _redux = __webpack_require__(6);
 
-var _reduxThunk = __webpack_require__(40);
+var _reduxThunk = __webpack_require__(41);
 
 var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-var _reducers = __webpack_require__(41);
+var _reducers = __webpack_require__(42);
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -1672,13 +1692,13 @@ function configureStore() {
 }
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports) {
 
 module.exports = require("redux-thunk");
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1690,7 +1710,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(6);
 
-var _AppReducer = __webpack_require__(17);
+var _AppReducer = __webpack_require__(18);
 
 var _AppReducer2 = _interopRequireDefault(_AppReducer);
 
@@ -1698,15 +1718,15 @@ var _PostReducer = __webpack_require__(11);
 
 var _PostReducer2 = _interopRequireDefault(_PostReducer);
 
-var _IntlReducer = __webpack_require__(44);
+var _IntlReducer = __webpack_require__(45);
 
 var _IntlReducer2 = _interopRequireDefault(_IntlReducer);
 
-var _AuthReducer = __webpack_require__(53);
+var _AuthReducer = __webpack_require__(54);
 
 var _AuthReducer2 = _interopRequireDefault(_AuthReducer);
 
-var _HomeReducer = __webpack_require__(56);
+var _HomeReducer = __webpack_require__(57);
 
 var _HomeReducer2 = _interopRequireDefault(_HomeReducer);
 
@@ -1727,7 +1747,7 @@ exports.default = (0, _redux.combineReducers)({
 // Import Reducers
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1739,7 +1759,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.API_URL = undefined;
 exports.default = callApi;
 
-var _isomorphicFetch = __webpack_require__(43);
+var _isomorphicFetch = __webpack_require__(44);
 
 var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 
@@ -1806,13 +1826,13 @@ function callApi(endpoint) {
 }
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 module.exports = require("isomorphic-fetch");
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1859,31 +1879,31 @@ var IntlReducer = function IntlReducer() {
 exports.default = IntlReducer;
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 module.exports = require("intl");
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports) {
 
 module.exports = require("intl-locales-supported");
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports) {
 
 module.exports = require("intl/locale-data/jsonp/en");
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-intl/locale-data/en");
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1913,19 +1933,19 @@ exports.default = {
 };
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports) {
 
 module.exports = require("intl/locale-data/jsonp/fr");
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-intl/locale-data/fr");
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1955,7 +1975,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1999,7 +2019,7 @@ var AuthReducer = function AuthReducer() {
 exports.default = AuthReducer;
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2011,7 +2031,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.API_URL = undefined;
 exports.default = callApiX;
 
-var _axios = __webpack_require__(55);
+var _axios = __webpack_require__(56);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -2072,13 +2092,13 @@ function callApiX(endpoint) {
 }
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports) {
 
 module.exports = require("axios");
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2111,31 +2131,31 @@ var HomeReducer = function HomeReducer() {
 exports.default = HomeReducer;
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports) {
 
 module.exports = require("redux-devtools");
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports) {
 
 module.exports = require("redux-devtools-log-monitor");
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports) {
 
 module.exports = require("redux-devtools-dock-monitor");
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-dom/server");
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2154,7 +2174,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = __webpack_require__(8);
 
-var _App = __webpack_require__(62);
+var _App = __webpack_require__(63);
 
 var _App2 = _interopRequireDefault(_App);
 
@@ -2205,7 +2225,7 @@ exports.default = _jsx(_reactRouter.Route, {
 }));
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2255,7 +2275,7 @@ var _Auth = __webpack_require__(25);
 
 var _Auth2 = _interopRequireDefault(_Auth);
 
-var _Home = __webpack_require__(67);
+var _Home = __webpack_require__(68);
 
 var _Home2 = _interopRequireDefault(_Home);
 
@@ -2369,13 +2389,13 @@ function mapStateToProps(store) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps)(App);
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports) {
 
 module.exports = require("classnames");
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2537,7 +2557,7 @@ var SignUp = function (_Component) {
 exports.default = SignUp;
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2561,7 +2581,7 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactBootstrap = __webpack_require__(9);
 
-var _FieldGroup = __webpack_require__(66);
+var _FieldGroup = __webpack_require__(67);
 
 var _FieldGroup2 = _interopRequireDefault(_FieldGroup);
 
@@ -2650,7 +2670,7 @@ var LogIn = function (_Component) {
 exports.default = LogIn;
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2684,7 +2704,7 @@ function FieldGroup(props, context) {
 exports.default = FieldGroup;
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2714,7 +2734,7 @@ var _Home;
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _Menu = __webpack_require__(68);
+var _Menu = __webpack_require__(69);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
@@ -2791,7 +2811,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps
 )(Home);
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2848,7 +2868,7 @@ function Menu(props, context) {
 exports.default = Menu;
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2871,7 +2891,7 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _PostListItem = __webpack_require__(70);
+var _PostListItem = __webpack_require__(71);
 
 var _PostListItem2 = _interopRequireDefault(_PostListItem);
 
@@ -2893,7 +2913,7 @@ function PostList(props) {
 exports.default = PostList;
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2966,7 +2986,7 @@ function PostListItem(props) {
 exports.default = PostListItem;
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3070,7 +3090,7 @@ var PostCreateWidget = exports.PostCreateWidget = function (_Component) {
 exports.default = (0, _reactIntl.injectIntl)(PostCreateWidget);
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3081,7 +3101,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.fetchComponentData = fetchComponentData;
 
-var _promiseUtils = __webpack_require__(73);
+var _promiseUtils = __webpack_require__(74);
 
 function fetchComponentData(store, components, params) {
   var needs = components.reduce(function (prev, current) {
@@ -3097,7 +3117,7 @@ function fetchComponentData(store, components, params) {
   */
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3128,7 +3148,7 @@ function sequence(items, consumer) {
 }
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3166,7 +3186,7 @@ var _post2 = _interopRequireDefault(_post);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3182,9 +3202,9 @@ var _auth2 = _interopRequireDefault(_auth);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var LocalStrategy = __webpack_require__(76);
+var LocalStrategy = __webpack_require__(77);
 
-var ObjectID = __webpack_require__(78).ObjectID;
+var ObjectID = __webpack_require__(79).ObjectID;
 
 // called on login, saves the id to session req.session.passport.user = {id:'..'}
 _passport2.default.serializeUser(function (user, done) {
@@ -3213,7 +3233,7 @@ _passport2.default.use(LocalStrategy);
 module.exports = _passport2.default;
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3229,7 +3249,7 @@ var _bcrypt2 = _interopRequireDefault(_bcrypt);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var LocalStrategy = __webpack_require__(77);
+var LocalStrategy = __webpack_require__(78);
 
 var strategy = new LocalStrategy({
 	usernameField: 'username' // not necessary, DEFAULT
@@ -3267,19 +3287,19 @@ var strategy = new LocalStrategy({
 module.exports = strategy;
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports) {
 
 module.exports = require("passport-local");
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports) {
 
 module.exports = require("mongodb");
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3291,7 +3311,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _express = __webpack_require__(4);
 
-var _post = __webpack_require__(80);
+var _post = __webpack_require__(81);
 
 var PostController = _interopRequireWildcard(_post);
 
@@ -3314,7 +3334,7 @@ router.route('/posts/:cuid').delete(PostController.deletePost);
 exports.default = router;
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3332,15 +3352,15 @@ var _post = __webpack_require__(28);
 
 var _post2 = _interopRequireDefault(_post);
 
-var _cuid = __webpack_require__(81);
+var _cuid = __webpack_require__(82);
 
 var _cuid2 = _interopRequireDefault(_cuid);
 
-var _limax = __webpack_require__(82);
+var _limax = __webpack_require__(83);
 
 var _limax2 = _interopRequireDefault(_limax);
 
-var _sanitizeHtml = __webpack_require__(83);
+var _sanitizeHtml = __webpack_require__(84);
 
 var _sanitizeHtml2 = _interopRequireDefault(_sanitizeHtml);
 
@@ -3424,25 +3444,25 @@ function deletePost(req, res) {
 }
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports) {
 
 module.exports = require("cuid");
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports) {
 
 module.exports = require("limax");
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports) {
 
 module.exports = require("sanitize-html");
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3454,11 +3474,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _express = __webpack_require__(4);
 
-var _auth = __webpack_require__(85);
+var _auth = __webpack_require__(86);
 
 var auth = _interopRequireWildcard(_auth);
 
-var _auth2 = __webpack_require__(86);
+var _auth2 = __webpack_require__(87);
 
 var AuthController = _interopRequireWildcard(_auth2);
 
@@ -3549,7 +3569,7 @@ module.exports = function (app, db) {
 */
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3575,7 +3595,7 @@ function ensureAuthenticated(req, res, next) {
 };
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3660,7 +3680,7 @@ function signUp(req, res, next) {
 }
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3672,7 +3692,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _express = __webpack_require__(4);
 
-var _home = __webpack_require__(88);
+var _home = __webpack_require__(89);
 
 var HomeController = _interopRequireWildcard(_home);
 
@@ -3683,7 +3703,7 @@ var router = new _express.Router();
 exports.default = router;
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3694,7 +3714,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getSomething = getSomething;
 
-var _home = __webpack_require__(89);
+var _home = __webpack_require__(90);
 
 var _home2 = _interopRequireDefault(_home);
 
@@ -3705,7 +3725,7 @@ function getSomething(req, res) {
 }
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3728,16 +3748,16 @@ var homeSchema = new Schema({});
 exports.default = _mongoose2.default.model('Home', homeSchema);
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(__dirname) {
 
 var webpack = __webpack_require__(30);
-var cssnext = __webpack_require__(91);
-var postcssFocus = __webpack_require__(92);
-var postcssReporter = __webpack_require__(93);
+var cssnext = __webpack_require__(92);
+var postcssFocus = __webpack_require__(93);
+var postcssReporter = __webpack_require__(94);
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -3822,31 +3842,31 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, ""))
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports) {
 
 module.exports = require("postcss-cssnext");
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports) {
 
 module.exports = require("postcss-focus");
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports) {
 
 module.exports = require("postcss-reporter");
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports) {
 
 module.exports = require("webpack-dev-middleware");
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports) {
 
 module.exports = require("webpack-hot-middleware");

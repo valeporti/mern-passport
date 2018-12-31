@@ -27,7 +27,10 @@ module.exports = {
         exclude: /(node_modules)/,
         loader: 'babel?cacheDirectory',
         query: {
-          presets: ['es2015']
+          presets: /* ['es2015'] */
+          [
+            ["es2015", {"modules": false}]
+          ]
         }
       },
       {

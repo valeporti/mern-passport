@@ -15,7 +15,7 @@ module.exports = {
   node: {
     __filename: true,
     __dirname: true,
-    fs: 'empty',
+    //fs: 'empty',
   },
 
   resolve: {
